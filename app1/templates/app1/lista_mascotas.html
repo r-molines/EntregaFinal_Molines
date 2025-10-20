@@ -1,0 +1,47 @@
+{% extends "app1/index.html" %}
+
+{% block titulo %} Lista de Mascotas {% endblock %}
+
+{% block contenido %}
+<form method="GET" class="mb-4">
+    <div class="input-group">
+      <input type="text" name="q" class="form-control" placeholder="Buscar por nombre..." value="{{ query }}">
+      <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+  </form>
+
+  <div class="container mt-5">
+    <h2>Lista de Mascotas</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Especie</th>
+          <th>Raza</th>
+          <th>Fecha de Nacimiento</th>
+          <th>Dueño</th>
+          <th>Fecha de Incorporación</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for mascota in mascotas %}
+          <tr>
+            <td>{{ mascota.nombre }}</td>
+            <td>{{ mascota.especie }}</td>
+            <td>{{ mascota.raza }}</td>
+            <td>{{ mascota.fecha_nacimiento }}</td>
+            <td>{{ mascota.duenno }}</td>
+            <td>{{ mascota.fecha_incorporacion }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="5" class="text-center">No hay mascotas registradas.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="{% url 'crear_mascota' %}" class="btn btn-primary">Agregar Mascota</a>
+  </div>
+{% endblock %}
+
+

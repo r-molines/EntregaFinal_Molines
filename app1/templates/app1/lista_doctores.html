@@ -1,0 +1,41 @@
+{% extends "app1/index.html" %}
+
+{% block titulo %} Lista de Doctores {% endblock %}
+
+{% block contenido %}
+<form method="GET" class="mb-4">
+    <div class="input-group">
+      <input type="text" name="q" class="form-control" placeholder="Buscar por nombre..." value="{{ query }}">
+      <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+  </form>
+
+  <div class="container mt-5">
+    <h2>Lista de Doctores</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Especialidad</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for doctor in doctores %}
+          <tr>
+            <td>{{ doctor.nombre }}</td>
+            <td>{{ doctor.especialidad }}</td>
+            <td>{{ doctor.email }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="5" class="text-center">No hay doctores registrados.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="{% url 'crear_doctor' %}" class="btn btn-primary">Agregar Doctor</a>
+  </div>
+{% endblock %}
+
+

@@ -1,0 +1,45 @@
+{% extends "app1/index.html" %}
+
+{% block titulo %} Lista de Citas {% endblock %}
+
+{% block contenido %}
+<form method="GET" class="mb-4">
+    <div class="input-group">
+      <input type="text" name="q" class="form-control" placeholder="Buscar por nombre..." value="{{ query }}">
+      <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+  </form>
+
+  <div class="container mt-5">
+    <h2>Lista de Citas</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Mascota</th>
+          <th>Doctor</th>
+          <th>Fecha y Hora</th>
+          <th>Motivo</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cita in citas %}
+          <tr>
+            <td>{{ cita.mascota }}</td>
+            <td>{{ cita.doctor }}</td>
+            <td>{{ cita.fecha_hora }}</td>
+            <td>{{ cita.motivo }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="4" class="text-center">No hay citas registradas.</td>
+          </tr>
+        {% endfor %}
+          
+      </tbody>
+    </table>
+    <a href="{% url 'crear_cita' %}" class="btn btn-primary">Agregar Cita</a>
+  </div>
+{% endblock %}
+
+
+
