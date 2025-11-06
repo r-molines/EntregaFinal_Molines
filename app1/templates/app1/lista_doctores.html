@@ -16,20 +16,25 @@
       <thead>
         <tr>
           <th>Nombre</th>
-          <th>Especialidad</th>
           <th>Email</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
         {% for doctor in doctores %}
           <tr>
             <td>{{ doctor.nombre }}</td>
-            <td>{{ doctor.especialidad }}</td>
             <td>{{ doctor.email }}</td>
+            <td>
+              <a href="{% url 'actualizar_doctor' doctor.nombre %}" class="btn btn-sm btn-warning">Editar</a>
+              <a href="{% url 'eliminar_doctor' doctor.nombre %}" class="btn btn-sm btn-danger" 
+                 onclick="return confirm('¿Seguro que deseas eliminar este doctor?');">
+                 Eliminar
+              </a>
           </tr>
         {% empty %}
           <tr>
-            <td colspan="5" class="text-center">No hay doctores registrados.</td>
+            <td colspan="3" class="text-center">No hay doctores registrados.</td>
           </tr>
         {% endfor %}
       </tbody>

@@ -16,22 +16,25 @@
       <thead>
         <tr>
           <th>Mascota</th>
-          <th>Doctor</th>
           <th>Fecha y Hora</th>
-          <th>Motivo</th>
+          <th>Acciones</th> <!-- Nueva columna -->
         </tr>
       </thead>
       <tbody>
         {% for cita in citas %}
           <tr>
             <td>{{ cita.mascota }}</td>
-            <td>{{ cita.doctor }}</td>
             <td>{{ cita.fecha_hora }}</td>
-            <td>{{ cita.motivo }}</td>
+            <td>
+              <a href="{% url 'actualizar_cita' cita.mascota %}" class="btn btn-sm btn-warning">Editar</a>
+              <a href="{% url 'eliminar_cita' cita.mascota %}" class="btn btn-sm btn-danger" 
+                 onclick="return confirm('¿Seguro que deseas eliminar esta cita?');">
+                 Eliminar
+              </a>
           </tr>
         {% empty %}
           <tr>
-            <td colspan="4" class="text-center">No hay citas registradas.</td>
+            <td colspan="3" class="text-center">No hay citas registradas.</td>
           </tr>
         {% endfor %}
           

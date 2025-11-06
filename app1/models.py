@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+# modelos
 
 class Mascota(models.Model):
     numero_identificacion = models.IntegerField(unique= True)

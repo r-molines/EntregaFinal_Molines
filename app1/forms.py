@@ -37,3 +37,17 @@ class CitaForm(forms.ModelForm):
             "fecha_hora": forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
             "motivo": forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+class MascotaEditForm(forms.ModelForm):
+    class Meta:
+        model = Mascota
+        fields = ['nombre', 'especie', 'raza', 'fecha_nacimiento', 'duenno']
+        widgets = {
+            "fecha_nacimiento": forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            "nombre": forms.TextInput(attrs={'class': 'form-control'}),
+            "especie": forms.TextInput(attrs={'class': 'form-control'}),
+            "raza": forms.TextInput(attrs={'class': 'form-control'}),
+            "duenno": forms.TextInput(attrs={'class': 'form-control'}),
+            
+        }
+
